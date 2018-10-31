@@ -6,7 +6,7 @@
  *                      Max Miroshnikov <miroshnikov at gmail dot com>
  * https://opensource.org/licenses/MIT
  *
- * Date: 2018-10-17T13:13Z
+ * Date: 2018-10-31T12:33Z
  */
 (function (factory) {
   'use strict'
@@ -4159,7 +4159,7 @@ jSmart.prototype.registerPlugin(
         }
       } else if (jSmart.prototype.modifiers.hasOwnProperty(params.name)) {
         fname = jSmart.prototype.modifiers[params.name]
-        return fname.apply(fname, paramData)
+        return fname.apply(data, paramData)
       } else {
         fname = params.name
         var func

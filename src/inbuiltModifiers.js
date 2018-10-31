@@ -45,7 +45,7 @@ define(['./core'], function (jSmart) {
         }
       } else if (jSmart.prototype.modifiers.hasOwnProperty(params.name)) {
         fname = jSmart.prototype.modifiers[params.name]
-        return fname.apply(fname, paramData)
+        return fname.apply(data, paramData)
       } else {
         fname = params.name
         var func
