@@ -246,7 +246,7 @@ define(['parser/parser', 'processor/processor', 'util/objectmerge'], function (j
     // Apply the filters to template.
     applyFilters: function (filters, tpl, data) {
       for (var i = 0; i < filters.length; ++i) {
-        tpl = filters[i].apply(this, tpl, data)
+        tpl = filters[i].apply(this, [tpl, data])
       }
       return tpl
     },

@@ -6,7 +6,7 @@
  *                      Max Miroshnikov <miroshnikov at gmail dot com>
  * https://opensource.org/licenses/MIT
  *
- * Date: 2018-11-04T16:13Z
+ * Date: 2018-11-04T16:21Z
  */
 (function (factory) {
   'use strict'
@@ -2595,7 +2595,7 @@ var version = '3.1.0'
     // Apply the filters to template.
     applyFilters: function (filters, tpl, data) {
       for (var i = 0; i < filters.length; ++i) {
-        tpl = filters[i].apply(this, tpl, data)
+        tpl = filters[i].apply(this, [tpl, data])
       }
       return tpl
     },
