@@ -6,7 +6,7 @@
  *                      Max Miroshnikov <miroshnikov at gmail dot com>
  * https://opensource.org/licenses/MIT
  *
- * Date: 2018-10-31T12:33Z
+ * Date: 2018-11-04T12:53Z
  */
 (function (factory) {
   'use strict'
@@ -2589,13 +2589,13 @@ var version = '3.1.0'
       // Merge back smarty data returned by process to original object.
       objectMerge(this.smarty, outputData.smarty)
       // Apply post filters to output and return the template data.
-      return this.applyFilters(jSmart.prototype.filtersGlobal.post.concat(this.filters.post), outputData.output)
+      return this.applyFilters(jSmart.prototype.filtersGlobal.post.concat(this.filters.post), outputData.output, data)
     },
 
     // Apply the filters to template.
-    applyFilters: function (filters, tpl) {
+    applyFilters: function (filters, tpl, data) {
       for (var i = 0; i < filters.length; ++i) {
-        tpl = filters[i](tpl)
+        tpl = filters[i](tpl, data)
       }
       return tpl
     },

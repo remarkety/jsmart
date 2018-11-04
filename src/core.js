@@ -240,13 +240,13 @@ define(['parser/parser', 'processor/processor', 'util/objectmerge'], function (j
       // Merge back smarty data returned by process to original object.
       objectMerge(this.smarty, outputData.smarty)
       // Apply post filters to output and return the template data.
-      return this.applyFilters(jSmart.prototype.filtersGlobal.post.concat(this.filters.post), outputData.output)
+      return this.applyFilters(jSmart.prototype.filtersGlobal.post.concat(this.filters.post), outputData.output, data)
     },
 
     // Apply the filters to template.
-    applyFilters: function (filters, tpl) {
+    applyFilters: function (filters, tpl, data) {
       for (var i = 0; i < filters.length; ++i) {
-        tpl = filters[i](tpl)
+        tpl = filters[i](tpl, data)
       }
       return tpl
     },
