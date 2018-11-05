@@ -79,6 +79,11 @@ define(['parser/parser', 'processor/processor', 'util/objectmerge'], function (j
     // Stores inner blocks.
     this.blocks = {}
 
+    this.filters = {
+      'variable': [],
+      'post': []
+    }
+
     this.parse(template, options)
   }
 

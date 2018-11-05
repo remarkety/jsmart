@@ -6,7 +6,7 @@
  *                      Max Miroshnikov <miroshnikov at gmail dot com>
  * https://opensource.org/licenses/MIT
  *
- * Date: 2018-11-04T16:21Z
+ * Date: 2018-11-05T10:31Z
  */
 (function (factory) {
   'use strict'
@@ -2427,6 +2427,11 @@ var version = '3.1.0'
 
     // Stores inner blocks.
     this.blocks = {}
+
+    this.filters = {
+      'variable': [],
+      'post': []
+    }
 
     this.parse(template, options)
   }
