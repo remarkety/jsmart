@@ -113,12 +113,12 @@
 {$z}
 
 {$w = ($foo|count_characters + 'abcdef'|count_characters) + $x/5 nocache}
-{$w} //==11
+{$w} //==9
 
-{(($foo|count_characters + 'abcdef'|count_characters)-7) + $x/5}
+{((($foo|count_characters) + ('abcdef'|count_characters))-7) + $x/5}
 
 {function name='retX'}{$x}{/function}|
-{(($foo|count_characters + 'abcdef'|count_characters)-{retX x=7}) + $x/5}
+{((($foo|count_characters) + ('abcdef'|count_characters))-{retX x=7}) + $x/5}
 
 
 {$y + "12"|replace:2:5}

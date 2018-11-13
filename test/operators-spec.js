@@ -97,5 +97,15 @@ define(['jSmart'], function (jSmart) {
       t = new jSmart('{if ($a || $b) && !($a && $b)}test1{/if} {if ($a || $c) && !($a && $c)}test2{/if}')
       expect(t.fetch({a: false, b: true, c: false, d: true})).toBe('test1 ')
     })
+
+    it('test add/sub with constant and modifier', function () {
+      var t = new jSmart('{(9+1)}')
+      expect(t.fetch()).toBe(10)
+    })
+
+    it('test add/sub with constant and modifier', function () {
+      var t = new jSmart('{$a=10}{($a+1)|count_characters}')
+      expect(t.fetch()).toBe('2')
+    })
   })
 })

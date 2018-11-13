@@ -562,8 +562,9 @@ define(['../util/objectmerge', '../util/trimallquotes', '../util/evalstring', '.
 
       var anyMatchingToken = this.getMatchingToken(s)
       if (anyMatchingToken !== false) {
-        value += RegExp.lastMatch
-        var newTree = this.tokens[anyMatchingToken].parse.call(this, s.slice(RegExp.lastMatch.length), {tree: tree, token: RegExp.lastMatch})
+        var regexRes = s.match(this.tokens[anyMatchingToken].regex)
+        value += regexRes[0]
+        var newTree = this.tokens[anyMatchingToken].parse.call(this, s.slice(regexRes[0].length), {tree: tree, token: regexRes[0]})
 
         if (typeof newTree === 'string') {
           if (newTree === 'parenStart') {
@@ -767,8 +768,29 @@ define(['../util/objectmerge', '../util/trimallquotes', '../util/evalstring', '.
         // Token for expression in parentheses.
         'regex': /^\s*\(\s*/,
         parse: function (s, data) {
-          // We do not know way of manupilating the tree here.
-          return 'parenStart'
+          var openBr = 1
+          var pos = 0
+          var value = ''
+          while (openBr > 0) {
+            if (pos >= s.length) {
+              return 'parenStart'
+            }
+            var char = s[pos]
+            if (char === ')') {
+              openBr--
+            } else if (char === '(') {
+              openBr++
+            }
+            value += char
+            pos++
+          }
+
+          var dataVar = this.parseExpression(value.slice(0, -1))
+          var modData = this.parseModifiers(s.slice(value.length), [dataVar.tree])
+          if (modData) {
+            return {ret: true, tree: modData.tree, value: modData.value}
+          }
+          return dataVar
         }
       },
       {
