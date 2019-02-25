@@ -33,9 +33,19 @@ define(['jSmart'], function (jSmart) {
       expect(t.fetch()).toBe('yes yo ')
     })
 
+    it('test greater than on equal values', function () {
+      var t = new jSmart('{if 5 > 5}no1{/if}{if 600 gt 600}no2{/if}')
+      expect(t.fetch()).toBe('')
+    })
+
     it('test greater than equal', function () {
       var t = new jSmart('{if 5 >= 2}yes{/if} {if 600 gte 200}yo{/if} {if 600 ge 200}yup{/if} {if 3 >= 5}no{/if}')
       expect(t.fetch()).toBe('yes yo yup ')
+    })
+
+    it('test greater than equal on equal values', function () {
+      var t = new jSmart('{if 5 >= 5}yes{/if} {if 600 gte 600}yo{/if} {if 600 ge 600}yup{/if}{if 3 >= 5}no{/if}')
+      expect(t.fetch()).toBe('yes yo yup')
     })
 
     it('test less than', function () {

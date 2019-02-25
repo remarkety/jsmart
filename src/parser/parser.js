@@ -884,7 +884,7 @@ define(['../util/objectmerge', '../util/trimallquotes', '../util/evalstring', '.
         // Regex for less than, greater than, less than equal, reather than equal.
         'regex': /^\s+(lt|lte|le|gt|gte|ge)\s+/i,
         parse: function (s, data) {
-          var op = RegExp.$1.replace(/l(t)?e/, '<').replace(/lt/, '<=').replace(/g(t)?e/, '>').replace(/gt/, '>=')
+          var op = RegExp.$1.replace(/l(t)?e/, '<=').replace(/lt/, '<').replace(/g(t)?e/, '>=').replace(/gt/, '>')
           return this.parseOperator(op, 'binary', 5)
         }
       },

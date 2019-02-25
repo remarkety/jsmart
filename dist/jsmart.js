@@ -6,7 +6,7 @@
  *                      Max Miroshnikov <miroshnikov at gmail dot com>
  * https://opensource.org/licenses/MIT
  *
- * Date: 2018-11-13T13:24Z
+ * Date: 2019-02-25T08:45Z
  */
 (function (factory) {
   'use strict'
@@ -951,7 +951,7 @@
         // Regex for less than, greater than, less than equal, reather than equal.
         'regex': /^\s+(lt|lte|le|gt|gte|ge)\s+/i,
         parse: function (s, data) {
-          var op = RegExp.$1.replace(/l(t)?e/, '<').replace(/lt/, '<=').replace(/g(t)?e/, '>').replace(/gt/, '>=')
+          var op = RegExp.$1.replace(/l(t)?e/, '<=').replace(/lt/, '<').replace(/g(t)?e/, '>=').replace(/gt/, '>')
           return this.parseOperator(op, 'binary', 5)
         }
       },
